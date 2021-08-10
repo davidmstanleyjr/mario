@@ -79,7 +79,30 @@ scene("game", () => {
 		x: [sprite("blue-steel"), solid(), scale(0.5)],
 	};
 
+	// for the level
 	const gameLevel = addLevel(map, levelCfg);
+
+	//adds the score
+	const scoreLabel = add([
+		text("test"),
+		pos(30, 6),
+		layer("ui"),
+		{
+			value: "test",
+		},
+	]);
+
+	// Text to show what level the player is on
+	add([text("level" + "test", pos(4, 6))]);
+
+	// Mario
+	const player = add([
+		sprite("mario"),
+		solid(),
+		pos(30, 0),
+		body(),
+		origin("bot"),
+	]);
 });
 
 start("game");
