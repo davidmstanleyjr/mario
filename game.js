@@ -98,35 +98,32 @@ scene("game", () => {
 	// Text to show what level the player is on
 	add([text("level" + "test", pos(4, 6))]);
 
-    // make Mario big
-    function big() {
-        let timer = 0;
-        let isBig = false;
-        return {
-            update() {
-                if (isBig) {
-                  timer -= dt() {
-                      if (timer <= 0) {
-                          this.smallify()
-                      }
-                  } 
-                }
-            },
-           isBig() {
-               return isBig
-           },
-           smallify() {
-               this.scale = vec2(1) 
-               timer = 0,
-               isBig = false;
-           },
-            biggify(time) {
-                this.scale = vec2(2) 
-               timer = time,
-               isBig = true;
-            }
-        }
-    }
+	// make Mario big
+	function big() {
+		let timer = 0;
+		let isBig = false;
+		return {
+			update() {
+				if (isBig) {
+					timer -= dt();
+					if (timer <= 0) {
+						this.smallify();
+					}
+				}
+			},
+			isBig() {
+				return isBig;
+			},
+			smallify() {
+				this.scale = vec2(1);
+				(timer = 0), (isBig = false);
+			},
+			biggify(time) {
+				this.scale = vec2(2);
+				(timer = time), (isBig = true);
+			},
+		};
+	}
 
 	// Mario
 	const player = add([
@@ -134,9 +131,16 @@ scene("game", () => {
 		solid(),
 		pos(30, 0),
 		body(),
-        big()
+		big(),
 		origin("bot"),
 	]);
+
+	player.on("headbump", (obj) => {
+		if (obj.is("coin-surprise")) {
+			gameLevel.spawn("$", obj.gridPos.sub(0, 1));
+			destroy(obj);
+		}
+	});
 
 	// event listeners
 
