@@ -23,3 +23,8 @@ This project wasn't that tough because I got the hang of Kaboom.js while doing t
 
 ![Screenshot 1](images/snip1.PNG)
 ![Screenshot 2](images/snip2.PNG)
+
+# Live Page
+
+Here is a link to the deployed site
+https://davids-mario.netlify.app/
